@@ -1,3 +1,4 @@
+package gui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -62,7 +63,7 @@ public class VentanaCalculadora extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(new MigLayout("", "[][][71.00][][][grow][-1.00][36.00,trailing]", "[][][][][][][][]"));
+		contentPane.setLayout(new MigLayout("", "[][][71.00][][][grow][36.00,trailing]", "[][][][][][][][]"));
 
 		JLabel lblTitulo = new JLabel("Calculadora de Envios");
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -71,7 +72,7 @@ public class VentanaCalculadora extends JFrame {
 		lblTitulo.setForeground(new Color(128, 255, 255));
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblTitulo.setBackground(new Color(64, 0, 128));
-		contentPane.add(lblTitulo, "cell 0 0 8 1,growx");
+		contentPane.add(lblTitulo, "cell 0 0 7 1,grow");
 
 		JLabel lblCiuOr = new JLabel("Ciudad Origen:");
 		contentPane.add(lblCiuOr, "cell 2 1,alignx left");
@@ -133,14 +134,13 @@ public class VentanaCalculadora extends JFrame {
 				String ciuOr = txtCiuOr.getText();
 				String ciuDes = txtCiuDes.getText();
 				if (ciuOr == null || ciuOr.isBlank() || ciuDes == null || ciuDes.isBlank()) {
-					JOptionPane.showMessageDialog(null, "Introduzca las ciudades de origen y destino.", "Faltan datos",
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Introduzca las ciudades de origen y destino.", "Faltan 					datos",	JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 				calculoImporte();
 			}
 		});
-		contentPane.add(btnCalcular, "cell 1 7 6 1,alignx center");
+		contentPane.add(btnCalcular, "cell 1 7 5 1,alignx center");
 	}
 
 	protected void calculoImporte() {
@@ -173,9 +173,9 @@ public class VentanaCalculadora extends JFrame {
 		}
 		}
 
-		if (tipoEnvio == "Paq10 - Antes de las 10h") {
+		if (tipoEnvio.equals("Paq10 - Antes de las 10h")) {
 			calcTipoPaq = 5;
-		} else if (tipoEnvio == "Paq14 - Antes de las 14h") {
+		} else if (tipoEnvio.equals("Paq14 - Antes de las 14h")) {
 			calcTipoPaq = 2;
 		} else {
 			calcTipoPaq = 0;
